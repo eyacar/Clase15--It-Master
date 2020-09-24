@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label>Ponga su numero!!!</label>
+        <input type="text"id="numero">
+        <input type="button" value="Agregar" onclick="agregar()">
+    </form>
+    <ul id="lista"></ul>
+    <p id="suma"></p>
+</body>
+<script>
+    var numeros = []
+    function agregar(){
+        var total=0
+        var a = document.getElementById("numero").value
+        if (!isNaN(a)){
+        document.getElementById("lista").insertAdjacentHTML("beforeend",`
+                <li>
+                ${a}
+                </li>                                
+                `)
+        numeros.push(a)
+        for (i of numeros){
+            
+            total+= parseInt(i)
+            document.getElementById("suma").innerHTML = total
+        }       
+        }        
+    }
+    
+</script>
+</html>

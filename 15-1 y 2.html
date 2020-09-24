@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            width: 50%;
+            height: 100px;
+            border: 2px dotted red;
+            margin: 2% auto;
+            padding: 3%;
+        }
+
+        label+input {
+            display: block;
+        }
+
+        label {
+            line-height: 30px;
+        }
+
+        input {
+            margin: 1% 35%;
+        }
+
+        div {
+            margin: 1% 30%;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <!-- Le agregue el label y el input para hacerlo mas ludico -->
+        <label for="">Que color puede tocar?? Juga a cambiar el color y adivina el color que puede tocar (colores: Azul,
+            Verde, Rosa, Violeta, Rojo)</label>
+        <input type="button" value="Cambia el color" onclick="imagen()">
+        <input type="button" value="Opción 2 Imagenes" onclick="ejercicio2()">
+    </form>
+    <div id="imagen"></div>
+    <div id="imagen2"></div>
+</body>
+<script>
+    var imagenes = ["https://via.placeholder.com/500x300/0000FF/808080/?text=La Gran Imagen", "https://via.placeholder.com/500x300/FF0000/?text=Imagen 2", "https://via.placeholder.com/500x300/7c69a9/808080/?text=Imagen 3", "https://via.placeholder.com/500x300/008000/?text=Imagen 4", "https://via.placeholder.com/500x300/eb0066/808080/?text=Imagen 5"]
+    function imagen() {
+        document.getElementById("imagen2").innerHTML= ""
+        var i = Math.floor(Math.random() * (imagenes.length));
+        document.querySelector("#imagen").innerHTML = `<img src=" ${imagenes[i]}" alt="">`
+        // Console.log para ver en consola que va cambiando por si toca dos veces la misma imagen
+        console.log(i);
+        console.log(imagenes[i]);
+    }
+    function ejercicio2() {
+        document.getElementById("imagen").innerHTML= ""
+        var i = Math.floor(Math.random() * (imagenes.length));
+        var i2 = Math.floor(Math.random() * (imagenes.length));
+        document.querySelector("#imagen").innerHTML = `<img src=" ${imagenes[i]}" alt="">`
+        document.querySelector("#imagen2").innerHTML = `<img src=" ${imagenes[i2]}" alt="">`
+        // Console.log para ver en consola que va cambiando por si toca dos veces la misma imagen
+        console.log(i);
+        console.log(imagenes[i]);
+        console.log(i2);
+        console.log(imagenes[i2]);
+    }
+</script>
+
+</html>

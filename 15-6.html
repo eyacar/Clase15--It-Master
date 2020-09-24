@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            width: 100%;
+            height: 40px;
+            text-align: center;
+        }
+        h1 span{
+            background-color: greenyellow;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body onload="reloj()">
+    <h1><span id="reloj"></span></h1>
+</body>
+<script>
+function reloj(){
+    var d = new Date();
+    var hora = d.getHours();
+    var minutos = d.getMinutes();
+    var segundos = d.getSeconds();
+    if(segundos<10){
+        var s = `0${segundos}`
+    }
+    else {
+        s = segundos
+    }
+    if(minutos<10){
+        var m = `0${minutos}`
+    }
+    else {
+        m = minutos
+    }
+    if(hora<10){
+        var h = `0${hora}`
+    }
+    else {
+        h = hora
+    }
+    document.getElementById("reloj").innerHTML = `${h}:${m}:${s}`
+    setTimeout("reloj()",1000)
+}
+</script>
+</html>
