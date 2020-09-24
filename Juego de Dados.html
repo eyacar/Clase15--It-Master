@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
         body{
             margin: 0;
@@ -29,8 +30,11 @@
            width: 30%;
            margin-left:8% ; 
         }  
+        #botones {
+            display: block;
+        }
         input[type="button"][value="Tirar"]{
-            margin-top: 0;
+            margin-top: 5%;
             margin-left:30% ;
             margin-right: 3%;
         }
@@ -47,8 +51,13 @@
     <div id="container">
     <form>
         <h1>Pruebe su suerte!!!</h1>
-        <label>Que dado es mayor?</label>
+        <label>Cuanto Sale en cada dado?</label>
+        <input type="number" id="dado1" placeholder="Dado 1 ....." min="1" max="6">
+        <input type="number" id="dado2" placeholder="Dado 2 ....." min="1" max="6">
+        <div id="botones">
         <input type="button" value="Tirar" onclick="tirar()">
+        <input type="button" value="Deshacer" onclick="deshacer()">
+        </div>
     </form>
     <div id="dados"></div>
     <div id="resultado"></div>
@@ -58,41 +67,43 @@
 <script>
 var imagen = `<img src="https://www.gifsanimados.org/data/media/710/dado-imagen-animada-0015.gif" alt="">`
 function tirar(){
+var d1 = document.getElementById("dado1").value
+var d2 = document.getElementById("dado2").value
+if (d1>0 && d1<7 && d2>0 && d2<7){
 var dado1 = Math.ceil(Math.random()*6)
 var dado2 = Math.ceil(Math.random()*6)
-if (dado1>dado2){
 console.log(dado1)
 console.log(dado2)
 document.getElementById("dados").innerHTML = imagen
 document.getElementById("dados").style.margin= "5% 35%"
 document.getElementById("resultado").style.margin= "5% 20%"
-document.getElementById("resultado").innerHTML = `<h3>Dado 1: <span>"${dado1}"</span> - Dado 2: <span>"${dado2}"</span> </h3>`
-document.getElementById("mensaje").style.margin= "5% 20%"
-document.getElementById("mensaje").style.color= "green"
-document.getElementById("mensaje").innerHTML = `<h2>Dado 1 mayor a Dado 2</h2>`
-}
-else if(dado1==dado2){
-console.log(dado1)
-console.log(dado2)
-document.getElementById("dados").innerHTML = imagen
-document.getElementById("dados").style.margin= "5% 35%"
-document.getElementById("resultado").style.margin= "5% 20%"
-document.getElementById("resultado").innerHTML = `<h3>Dado 1: <span>"${dado1}"</span> - Dado 2: <span>"${dado2}"</span> </h3>`
-document.getElementById("mensaje").style.margin= "5% 20%"
-document.getElementById("mensaje").style.color= "blue"
-document.getElementById("mensaje").innerHTML = `<h2>Dados iguales</h2>`    
+document.getElementById("resultado").innerHTML = `<h2>Dado 1: <span>"${dado1}"</span> - Dado 2: <span>"${dado2}"</span> </h2>`
+if (d1 == dado1 && d2 == dado2) {
+    document.getElementById("mensaje").style.margin= "5% 35%"
+    document.getElementById("mensaje").style.color= "green"
+    document.getElementById("mensaje").innerHTML = `<h2>GANASTE!!!</h2>`
 }
 else{
-console.log(dado1)
-console.log(dado2)
-document.getElementById("dados").innerHTML = imagen
-document.getElementById("dados").style.margin= "5% 35%"
-document.getElementById("resultado").style.margin= "5% 20%"
-document.getElementById("resultado").innerHTML = `<h3>Dado 1: <span>"${dado1}"</span> - Dado 2: <span>"${dado2}"</span> </h3>`
-document.getElementById("mensaje").style.margin= "5% 20%"
-document.getElementById("mensaje").style.color= "red"
-document.getElementById("mensaje").innerHTML = `<h2>Dado 2 mayor a Dado 3</h2>`
+    document.getElementById("mensaje").style.margin= "5% 35%"
+    document.getElementById("mensaje").style.color= "red"
+    document.getElementById("mensaje").innerHTML = `<h2>PERDISTE!!!</h2>`
 }
+}
+else if ((d1<=0 || d1>=7) && d2>0) {
+    Swal.fire('<h4> <span>ERROR EN VALOR DADO 1 </span> DADOS 1 AL 6 </h4>')
+}
+else if ((d2<=0 || d2>=7) && d1>0) {
+    Swal.fire('<h4> <span>ERROR EN VALOR DADO 2 </span> DADOS 1 AL 6 </h4>')
+}
+else {
+   Swal.fire('<h4><span>LOS DADOS SON DEL 1 AL 6</span></h4>')
+}
+}
+function deshacer(){
+    document.querySelector("form").reset()
+    document.getElementById("dados").innerHTML = ""
+    document.getElementById("resultado").innerHTML = ""
+    document.getElementById("mensaje").innerHTML = ""
 }
 </script>
 </html>

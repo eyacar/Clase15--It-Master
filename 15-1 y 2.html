@@ -60,6 +60,7 @@
         console.log(imagenes[i]);
     }
     function ejercicio2() {
+        do {
         document.getElementById("imagen").innerHTML= ""
         var i = Math.floor(Math.random() * (imagenes.length));
         var i2 = Math.floor(Math.random() * (imagenes.length));
@@ -70,6 +71,7 @@
         console.log(imagenes[i]);
         console.log(i2);
         console.log(imagenes[i2]);
+        }while(i==i2)
     }
 </script>
 
