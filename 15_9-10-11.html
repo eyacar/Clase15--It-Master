@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="dias()">
+  <h1>Faltan <span id="dias"></span> para el mes que viene (sin contar hoy)</h1>
+  <h1>Faltan <span id="dias2"></span> para el año que viene (sin contar hoy)</h1>
+  <h1>Pasaron <span id="dias3"></span> desde principio de año (sin contar hoy)</h1>  
+</body>
+<script>
+function dias(){
+var a = new Date()
+var y = a.getFullYear()
+var m = a.getMonth()
+var d = a.getDay()
+var m1 = m+1
+var b = new Date(y,m1);
+var c = a - b; 
+// Ejercicio 9
+var days = (b - a) / (60 * 60 * 24 * 1000);
+day= Math.floor(days)
+document.getElementById("dias").innerHTML = `"${day}" días`
+console.log(day)
+// Ejercicio 10
+y1 = y+1
+var new_year = new Date(y1,0);
+var days_y = (new_year - a) / (60 * 60 * 24 * 1000);
+year= Math.floor(days_y)
+console.log(year)
+document.getElementById("dias2").innerHTML = `"${year}" días`
+// Ejercicio 10
+var new_year1 = new Date(y,0);
+var days_y1 = (a - new_year1) / (60 * 60 * 24 * 1000);
+year1= Math.floor(days_y1)
+console.log(year1)
+document.getElementById("dias3").innerHTML = `"${year1}" días`
+}
+</script>
+</html>
